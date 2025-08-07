@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Solutions: Loops & Conditionals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfdff;
+        }
+        .code-block {
+            background-color: #2d3748; /* bg-gray-800 */
+            color: #e2e8f0; /* text-gray-200 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="text-slate-800">
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-3xl">
+
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-indigo-900">C Lab Programming Solutions</h1>
+            <p class="text-lg text-slate-600 mt-2">Loops & Conditional Statements</p>
+        </header>
+
+        <div id="solutions-list" class="space-y-6">
+            <!-- Solutions are populated by the script below -->
+        </div>
+        
+        <footer class="text-center mt-8 text-sm text-slate-500">
+            <p>Solutions for the C programming questions (Lab 3).</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const solutions = [
+                { id: 1, title: 'Positive, Negative, or Zero', answer: `#include <stdio.h>\n\nint main() {\n    int num;\n    printf("Enter a number: ");\n    scanf("%d", &num);\n\n    if (num > 0) {\n        printf("%d is positive.\\n", num);\n    } else if (num < 0) {\n        printf("%d is negative.\\n", num);\n    } else {\n        printf("The number is zero.\\n");\n    }\n\n    return 0;\n}` },
+                { id: 2, title: 'Largest of Three Numbers', answer: `#include <stdio.h>\n\nint main() {\n    int n1, n2, n3;\n    printf("Enter three numbers: ");\n    scanf("%d %d %d", &n1, &n2, &n3);\n\n    if (n1 >= n2) {\n        if (n1 >= n3) {\n            printf("%d is the largest number.\\n", n1);\n        } else {\n            printf("%d is the largest number.\\n", n3);\n        }\n    } else {\n        if (n2 >= n3) {\n            printf("%d is the largest number.\\n", n2);\n        } else {\n            printf("%d is the largest number.\\n", n3);\n        }\n    }\n\n    return 0;\n}` },
+                { id: 3, title: 'Print Natural Numbers', answer: `#include <stdio.h>\n\nint main() {\n    printf("The first 10 natural numbers are:\\n");\n    for (int i = 1; i <= 10; i++) {\n        printf("%d ", i);\n    }\n    printf("\\n");\n\n    return 0;\n}` },
+                { id: 4, title: 'Factorial of a Number', answer: `#include <stdio.h>\n\nint main() {\n    int n;\n    long long factorial = 1;\n    printf("Enter an integer: ");\n    scanf("%d", &n);\n\n    if (n < 0) {\n        printf("Error! Factorial of a negative number doesn't exist.");\n    } else {\n        for (int i = 1; i <= n; ++i) {\n            factorial *= i;\n        }\n        printf("Factorial of %d = %lld\\n", n, factorial);\n    }\n\n    return 0;\n}` },
+                { id: 5, title: 'Multiplication Table', answer: `#include <stdio.h>\n\nint main() {\n    int n, i = 1;\n    printf("Enter an integer: ");\n    scanf("%d", &n);\n\n    printf("Multiplication table of %d:\\n", n);\n    while (i <= 10) {\n        printf("%d * %d = %d\\n", n, i, n * i);\n        i++;\n    }\n\n    return 0;\n}` },
+                { id: 6, title: 'Reverse a Number', answer: `#include <stdio.h>\n\nint main() {\n    int n, reversedN = 0, remainder;\n    printf("Enter an integer: ");\n    scanf("%d", &n);\n\n    while (n != 0) {\n        remainder = n % 10;\n        reversedN = reversedN * 10 + remainder;\n        n /= 10;\n    }\n\n    printf("Reversed number = %d\\n", reversedN);\n\n    return 0;\n}` },
+                { id: 7, title: 'Half-Pyramid Pattern', answer: `#include <stdio.h>\n\nint main() {\n    int rows;\n    printf("Enter number of rows: ");\n    scanf("%d", &rows);\n\n    for (int i = 1; i <= rows; ++i) {\n        for (int j = 1; j <= i; ++j) {\n            printf("* ");\n        }\n        printf("\\n");\n    }\n\n    return 0;\n}` },
+                { id: 8, title: 'Sum of Even Numbers', answer: `#include <stdio.h>\n\nint main() {\n    int sum = 0;\n\n    for (int i = 1; i <= 50; i++) {\n        if (i % 2 == 0) {\n            sum += i;\n        }\n    }\n\n    printf("Sum of all even numbers from 1 to 50 is: %d\\n", sum);\n\n    return 0;\n}` }
+            ];
+
+            const solutionsListEl = document.getElementById('solutions-list');
+
+            solutions.forEach(s => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-6 rounded-2xl shadow-lg border border-indigo-100';
+
+                const title = document.createElement('h2');
+                title.className = 'text-xl font-bold text-indigo-800 mb-4';
+                title.textContent = `Solution ${s.id}: ${s.title}`;
+
+                const codeBlock = document.createElement('div');
+                codeBlock.className = 'code-block';
+                codeBlock.textContent = s.answer;
+
+                card.appendChild(title);
+                card.appendChild(codeBlock);
+                solutionsListEl.appendChild(card);
+            });
+        });
+    </script>
+</body>
+</html>
