@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>C Programming Theory: Loops & Conditionals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fdfdff;
+        }
+        .prose {
+            max-width: 65ch;
+            color: #334155; /* slate-700 */
+        }
+        .prose h2 {
+            font-size: 1.5em;
+            font-weight: 700;
+            margin-top: 2em;
+            margin-bottom: 1em;
+            padding-bottom: 0.3em;
+            border-bottom: 1px solid #e2e8f0; /* slate-200 */
+            color: #312e81; /* indigo-900 */
+        }
+        .prose h3 {
+            font-size: 1.25em;
+            font-weight: 600;
+            margin-top: 1.6em;
+            margin-bottom: 0.6em;
+            color: #4338ca; /* indigo-700 */
+        }
+        .prose p, .prose ul {
+            line-height: 1.6;
+        }
+        .prose strong, .prose code {
+            color: #312e81; /* indigo-900 */
+            font-weight: 600;
+        }
+        .code-block {
+            background-color: #2d3748; /* bg-gray-800 */
+            color: #e2e8f0; /* text-gray-200 */
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.9em;
+            white-space: pre-wrap;
+            margin-top: 1em;
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="text-slate-800">
+
+    <main class="container mx-auto p-4 sm:p-6 md:p-8">
+        <div class="prose mx-auto">
+            <header class="text-center mb-12">
+                <h1 class="text-3xl sm:text-4xl font-bold text-indigo-900 !m-0">C Programming Theory</h1>
+                <p class="text-lg text-slate-600 mt-2">Loops & Conditional Statements</p>
+            </header>
+
+            <h2>Conditional Statements (`if`, `else if`, `else`)</h2>
+            <p>Conditional statements allow a program to execute certain blocks of code only if a specific condition is true. They are the primary way to make decisions in your code.</p>
+
+            <h3>The `if-else` Statement</h3>
+            <p>This is the most common conditional statement. If the condition in the parentheses <code>()</code> is true, the code inside the <code>if</code> block is executed. Otherwise, the code inside the <code>else</code> block is executed.</p>
+            <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int age = 20;
+    if (age >= 18) {
+        printf("You are eligible to vote.\\n");
+    } else {
+        printf("You are not eligible to vote.\\n");
+    }
+    return 0;
+}</div>
+
+            <h3>The `if-else if-else` Ladder</h3>
+            <p>This is used when you need to check multiple conditions. The program checks the conditions from top to bottom and executes the block for the first one that is true. If none are true, the final <code>else</code> block is executed.</p>
+            <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int number = 0;
+    printf("Enter a number: ");
+    scanf("%d", &number);
+
+    if (number > 0) {
+        printf("The number is positive.\\n");
+    } else if (number < 0) {
+        printf("The number is negative.\\n");
+    } else {
+        printf("The number is zero.\\n");
+    }
+    return 0;
+}</div>
+
+            <h2>Looping Statements (`for`, `while`)</h2>
+            <p>Loops are used to execute a block of code repeatedly as long as a certain condition is met. They are essential for automating repetitive tasks.</p>
+
+            <h3>The `for` Loop</h3>
+            <p>The <code>for</code> loop is ideal when you know exactly how many times you want to repeat the loop. It consists of three parts separated by semicolons:</p>
+            <ol>
+                <li><strong>Initialization:</strong> Executes once at the beginning (e.g., <code>int i = 1</code>).</li>
+                <li><strong>Condition:</strong> Checked before each iteration. If false, the loop stops (e.g., <code>i <= 5</code>).</li>
+                <li><strong>Increment/Decrement:</strong> Executes at the end of each iteration (e.g., <code>i++</code>).</li>
+            </ol>
+            <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    // This loop will run 5 times
+    for (int i = 1; i <= 5; i++) {
+        printf("Iteration number %d\\n", i);
+    }
+    return 0;
+}</div>
+
+            <h3>Nested `for` Loops</h3>
+            <p>Placing one loop inside another is called nesting. This is very common for working with 2D structures or creating patterns, where the outer loop controls the rows and the inner loop controls the columns.</p>
+            <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int rows = 4;
+    // Outer loop for rows
+    for (int i = 1; i <= rows; ++i) {
+        // Inner loop for columns
+        for (int j = 1; j <= i; ++j) {
+            printf("* ");
+        }
+        printf("\\n"); // Move to the next line after each row
+    }
+    return 0;
+}</div>
+
+            <h3>The `while` Loop</h3>
+            <p>The <code>while</code> loop is used when you don't know the exact number of iterations, and you want the loop to continue as long as a condition is true. The condition is checked *before* each iteration.</p>
+            <div class="code-block">#include &lt;stdio.h&gt;
+
+int main() {
+    int n = 1;
+    printf("Multiplication table of 5:\\n");
+    while (n <= 10) {
+        printf("5 * %d = %d\\n", n, 5 * n);
+        n++; // It's crucial to update the loop variable
+    }
+    return 0;
+}</div>
+
+        </div>
+    </main>
+</body>
+</html>
